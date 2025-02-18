@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TestingModeComponent } from './shared/testing-mode/testing-mode.component';
+import { SplashScreenComponent } from "./splash-screen/splash-screen.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, TranslateModule, TestingModeComponent],
+  imports: [RouterOutlet, TranslateModule, TestingModeComponent, SplashScreenComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
