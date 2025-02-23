@@ -5,6 +5,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -22,6 +23,6 @@ export const appConfig: ApplicationConfig = {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
       },
-    })]),
+    })]), provideAnimationsAsync(), provideAnimationsAsync(),
   ],
 };

@@ -1,3 +1,15 @@
 <div class="testing-mode">
-  <button (click)="toggleLanguage()">Lang: {{ currentLanguage }}</button>
+  <!-- FLOAT BTN -->
+  <button class="floating-btn" (click)="toggleMenu()">
+    <mat-icon>settings</mat-icon>
+  </button>
+
+  <!-- DROP MENU -->
+  @if (isMenuOpen()) {
+    <div class="menu">
+      <button (click)="clearLocalStorage()">Clear Storage</button>
+      <button (click)="toggleLanguage()">Lang: {{ currentLanguage() }}</button>
+      <button (click)="toggleSplashScreen()">Splash: {{ isSplashEnabled() ? 'ON' : 'OFF' }}</button>
+    </div>
+  }
 </div>

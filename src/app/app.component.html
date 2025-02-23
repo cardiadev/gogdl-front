@@ -6,8 +6,17 @@
 <!-- DEBUG: COMPONENT -->
 <app-testing-mode/>
 
-<app-splash-screen [duration]="2000">
-  GoGDL App Loading...
-</app-splash-screen>
+@if (appState().splashEnabled) {
+  <app-splash-screen [duration]="3000">
+    GoGDL App Loading...
+  </app-splash-screen>
+}
 
-<router-outlet />
+@if (!appState().seenOnboarding) {
+  <app-onboarding></app-onboarding>
+} @else {
+  <router-outlet></router-outlet>
+}
+
+
+<!-- <router-outlet /> -->
