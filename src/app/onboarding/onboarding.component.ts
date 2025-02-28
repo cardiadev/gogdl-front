@@ -1,5 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, inject, OnInit, Output, signal } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { AppStateService } from '../services/app-state.service';
 
 @Component({
   selector: 'app-onboarding',
@@ -9,6 +10,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class OnboardingComponent implements OnInit {
+  private appStateService = inject(AppStateService);
 
   constructor() {}
 
@@ -16,6 +18,6 @@ export class OnboardingComponent implements OnInit {
   }
 
   skipOnboarding(): void {
-    console.log("Skip onboarding");
+    this.appStateService.updateAppState('seenOnboarding', true);
   }
 }
