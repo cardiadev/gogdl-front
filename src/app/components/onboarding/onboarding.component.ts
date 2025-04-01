@@ -1,6 +1,6 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, inject, OnInit, Output, signal } from '@angular/core';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { AppStateService } from '../services/app-state.service';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { AppStateService } from '../../services/app-state.service';
 
 @Component({
   selector: 'app-onboarding',
