@@ -1,4 +1,8 @@
-import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  importProvidersFrom,
+  provideZoneChangeDetection,
+} from '@angular/core';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { provideRouter, RouterModule } from '@angular/router';
@@ -6,6 +10,7 @@ import { routes } from './app.routes';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideMapboxGL } from 'ngx-mapbox-gl';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -17,13 +22,19 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     importProvidersFrom(RouterModule),
     provideHttpClient(),
+    provideMapboxGL({
+      accessToken: import.meta.env.NG_APP_MAPBOX_TOKEN
+    }),
     provideAnimations(),
-    importProvidersFrom([TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-    })]), provideAnimationsAsync(), provideAnimationsAsync(),
+    provideAnimationsAsync(),
+    importProvidersFrom([
+      TranslateModule.forRoot({
+        loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient],
+        },
+      }),
+    ]),
   ],
 };

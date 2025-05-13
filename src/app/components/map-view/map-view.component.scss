@@ -5,3 +5,23 @@
   top: 0;
   left: 0;
 }
+
+.map-container {
+  height: 100%;
+  width: 100%;
+}
+
+.user-marker {
+  width: 20px;
+  height: 20px;
+  background-color: #6200ea;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+mgl-map {
+  height: 100%;
+  width: 100%;
+}
+

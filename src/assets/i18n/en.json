@@ -3,17 +3,23 @@
   "START": "Start",
   "ONBOARDING": {
     "SLIDE_01": {
-      "TITLE": "Explora y encuentra el mejor lugar",
-      "DESCRIPTION": "Con solo unos toques en tu pantalla, descubre los estacionamientos más cercanos y su disponibilidad en tiempo real."
+      "TITLE": "Explore and find the best spot",
+      "DESCRIPTION": "With just a few taps on your screen, discover the nearest parking lots and their real-time availability."
     },
     "SLIDE_02": {
-      "TITLE": "Encuentra estacionamiento rápidamente",
-      "DESCRIPTION": "Explora los estacionamientos más cercanos en tiempo real, con información sobre la disponibilidad para que puedas elegir el mejor lugar."
+      "TITLE": "Find parking quickly",
+      "DESCRIPTION": "Explore nearby parking lots in real time, with information on availability so you can choose the best spot."
     },
     "SLIDE_03": {
-      "TITLE": "Olvídate del estrés al estacionar",
-      "DESCRIPTION": "Nuestra app simplifica tu búsqueda de estacionamiento para que disfrutes más tu tiempo."
+      "TITLE": "Forget the stress of parking",
+      "DESCRIPTION": "Our app simplifies your parking search so you can enjoy your time more."
     },
-    "START": "Comenzar"
+    "START": "Get Started"
+  },
+  "BOTTOM_NAV": {
+    "HOME": "Home",
+    "DATA": "Data",
+    "PARKING": "Parking",
+    "PROFILE": "Profile"
   }
 }
