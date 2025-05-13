@@ -1,0 +1,30 @@
+<div class="onboarding-container">
+  <swiper-container pagination="true" pagination-dynamic-bullets="true">
+    <swiper-slide>
+      <div class="onboarding-slide">
+        <img src="assets/img/onboarding_01.webp" alt="Ilustración" class="onboarding-image">
+        <h2>{{ "ONBOARDING.SLIDE_01.TITLE" | translate }}</h2>
+        <p>{{ "ONBOARDING.SLIDE_01.DESCRIPTION" | translate }}</p>
+      </div>
+    </swiper-slide>
+    <swiper-slide>
+      <div class="onboarding-slide">
+        <img src="assets/img/onboarding_02.webp" alt="Ilustración" class="onboarding-image">
+        <h2>{{ "ONBOARDING.SLIDE_02.TITLE" | translate }}</h2>
+        <p>{{ "ONBOARDING.SLIDE_02.DESCRIPTION" | translate }}</p>
+      </div>
+    </swiper-slide>
+    <swiper-slide>
+      <div class="onboarding-slide">
+        <img src="assets/img/onboarding_03.webp" alt="Ilustración" class="onboarding-image">
+        <h2>{{ "ONBOARDING.SLIDE_03.TITLE" | translate }}</h2>
+        <p>{{ "ONBOARDING.SLIDE_03.DESCRIPTION" | translate }}</p>
+        <button class="start-btn" (click)="skipOnboarding()">
+          {{ "ONBOARDING.START" | translate }}
+        </button>
+      </div>
+    </swiper-slide>
+
+  </swiper-container>
+
+</div>

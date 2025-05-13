@@ -1,4 +1,19 @@
 {
-  "WELCOME": "Welcome to the app!",
-  "START": "Start"
+  "WELCOME": "Welcome to GoGDL",
+  "START": "Start",
+  "ONBOARDING": {
+    "SLIDE_01": {
+      "TITLE": "Explora y encuentra el mejor lugar",
+      "DESCRIPTION": "Con solo unos toques en tu pantalla, descubre los estacionamientos más cercanos y su disponibilidad en tiempo real."
+    },
+    "SLIDE_02": {
+      "TITLE": "Encuentra estacionamiento rápidamente",
+      "DESCRIPTION": "Explora los estacionamientos más cercanos en tiempo real, con información sobre la disponibilidad para que puedas elegir el mejor lugar."
+    },
+    "SLIDE_03": {
+      "TITLE": "Olvídate del estrés al estacionar",
+      "DESCRIPTION": "Nuestra app simplifica tu búsqueda de estacionamiento para que disfrutes más tu tiempo."
+    },
+    "START": "Comenzar"
+  }
 }

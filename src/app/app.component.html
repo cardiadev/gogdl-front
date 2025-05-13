@@ -1,9 +1,22 @@
-<main>
-  <h1>{{ "WELCOME" | translate }}</h1>
-  <button>{{ "START" | translate }}</button>
-</main>
-
 <!-- DEBUG: COMPONENT -->
 <app-testing-mode/>
 
-<router-outlet />
+@if (appState().splashEnabled) {
+  <app-splash-screen [duration]="3000">
+    GoGDL App Loading...
+  </app-splash-screen>
+}
+
+@if (!appState().seenOnboarding) {
+  <app-onboarding></app-onboarding>
+} @else {
+  <router-outlet></router-outlet>
+}
+<!-- <app-map-view></app-map-view>
+<app-bottom-nav></app-bottom-nav> -->
+
+
+<!-- <main>
+  <h1>{{ "WELCOME" | translate }}</h1>
+  <button>{{ "START" | translate }}</button>
+</main> -->
