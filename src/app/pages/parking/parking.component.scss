@@ -22,7 +22,6 @@
         font-weight: 600;
         color: #333;
         margin: 0 0 24px 0;
-        text-align: center;
       }
 
       .filter-section {
@@ -137,15 +136,52 @@
             margin: 0;
           }
 
-          .section-count {
-            background: #6200ea;
-            color: white;
-            font-size: 14px;
-            font-weight: 600;
-            padding: 4px 12px;
-            border-radius: 16px;
-            min-width: 24px;
-            text-align: center;
+          .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            .section-count {
+              background: #6200ea;
+              color: white;
+              font-size: 14px;
+              font-weight: 600;
+              padding: 4px 12px;
+              border-radius: 16px;
+              min-width: 24px;
+              text-align: center;
+            }
+
+            .view-toggle-btn {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              border: 2px solid #e0e0e0;
+              background: white;
+              color: #666;
+              cursor: pointer;
+              transition: all 0.2s ease;
+
+              mat-icon {
+                font-size: 20px;
+                width: 20px;
+                height: 20px;
+              }
+
+              &:hover {
+                border-color: #6200ea;
+                color: #6200ea;
+                background: rgba(98, 0, 234, 0.05);
+                transform: scale(1.05);
+              }
+
+              &:active {
+                transform: scale(0.95);
+              }
+            }
           }
         }
 
@@ -156,24 +192,29 @@
 
           .carousel {
             display: flex;
-            gap: 16px;
             overflow-x: auto;
+            gap: 16px;
+            padding: 0 8px;
             scroll-behavior: smooth;
-            padding: 4px;
-            scrollbar-width: none; // Firefox
-            -ms-overflow-style: none; // IE/Edge
+            scrollbar-width: none;
 
-            // Hide scrollbar for Webkit browsers
             &::-webkit-scrollbar {
               display: none;
             }
 
-            // Add padding to show partial next card
-            &::after {
-              content: '';
-              flex-shrink: 0;
-              width: 20px;
+            // List layout - stack vertically
+            &.list-layout {
+              flex-direction: column;
+              overflow-x: visible;
+              gap: 8px;
+              padding: 0;
             }
+          }
+
+          // List view container styles
+          &.list-view {
+            overflow: visible;
+            margin: 0;
           }
         }
 

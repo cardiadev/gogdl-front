@@ -14,6 +14,8 @@ export interface FilterOption {
   isActive: boolean;
 }
 
+export type ViewMode = 'cards' | 'list';
+
 @Component({
   selector: 'app-parking',
   imports: [MatIconModule, TranslateModule, BottomNavComponent, ParkingCardComponent, CommonModule],
@@ -26,10 +28,12 @@ export class ParkingComponent implements OnInit {
   private allParkingLots = signal<ParkingLot[]>([]);
   private activeFilter = signal<string>('all');
   private isLoadingImages = signal<boolean>(true);
+  private viewMode = signal<ViewMode>('cards');
 
   // Computed properties
   nearbyParkingLots = computed(() => this.getFilteredParkingLots());
   favoriteParkingLots = computed(() => this.allParkingLots().filter(lot => lot.isFavorite));
+  currentViewMode = computed(() => this.viewMode());
 
   // Opciones de filtro
   filterOptions: FilterOption[] = [
@@ -255,5 +259,11 @@ export class ParkingComponent implements OnInit {
         : lot
     );
     this.allParkingLots.set(updatedLots);
+  }
+
+  onToggleViewMode() {
+    const newMode = this.viewMode() === 'cards' ? 'list' : 'cards';
+    this.viewMode.set(newMode);
+    console.log('View mode changed to:', newMode);
   }
 }

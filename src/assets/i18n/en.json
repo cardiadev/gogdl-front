@@ -61,8 +61,12 @@
       "SPACES": "spaces"
     },
     "EMPTY_STATE": {
-      "TITLE": "You don't have favorite parking lots yet",
-      "MESSAGE": "Tap the heart on any parking lot to add it here"
+      "TITLE": "You don't have favorite parkings yet",
+      "MESSAGE": "Tap the heart on any parking to add it here"
+    },
+    "VIEW": {
+      "CARDS": "Card view",
+      "LIST": "List view"
     }
   },
   "PROFILE": {

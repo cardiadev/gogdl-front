@@ -1,3 +1,4 @@
+// Card View Styles
 .parking-card {
   display: flex;
   flex-direction: column;
@@ -107,7 +108,6 @@
         color: #333;
         margin: 0 0 6px 0;
         line-height: 1.3;
-
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
@@ -201,18 +201,97 @@
           background: rgba(98, 0, 234, 0.05);
         }
 
-        &.directions-btn:hover {
-          border-color: #2196f3;
-          color: #2196f3;
-          background: rgba(33, 150, 243, 0.05);
-        }
-
-        &.share-btn:hover {
-          border-color: #4caf50;
-          color: #4caf50;
-          background: rgba(76, 175, 80, 0.05);
+        &:active {
+          transform: scale(0.98);
         }
       }
+    }
+  }
+}
+
+// List View Styles
+.parking-list-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  margin-bottom: 0;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #f5f5f5;
+    cursor: pointer;
+    border-color: #bbb;
+  }
+
+  .parking-image-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 12px;
+    flex-shrink: 0;
+
+    .list-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .list-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-width: 0;
+
+    .list-info {
+      flex: 1;
+      min-width: 0;
+      margin-right: 12px;
+
+      .list-name {
+        font-size: 15px;
+        font-weight: 600;
+        color: #333;
+        margin: 0 0 2px 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        line-height: 1.2;
+      }
+
+      .list-meta {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        color: #666;
+
+        .time-label {
+          font-weight: 500;
+        }
+
+        .duration {
+          color: #999;
+
+          &::before {
+            content: "•";
+            margin-right: 6px;
+            color: #ccc;
+          }
+        }
+      }
+    }
+
+    .list-price {
+      font-size: 16px;
+      font-weight: 700;
+      color: #6200ea;
+      flex-shrink: 0;
     }
   }
 }

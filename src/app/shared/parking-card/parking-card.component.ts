@@ -28,6 +28,7 @@ export interface ParkingLot {
 export class ParkingCardComponent {
   @Input() parkingLot!: ParkingLot;
   @Input() showActions: boolean = true;
+  @Input() viewMode: 'cards' | 'list' = 'cards';
 
   @Output() onDirections = new EventEmitter<ParkingLot>();
   @Output() onShare = new EventEmitter<ParkingLot>();
@@ -72,5 +73,28 @@ export class ParkingCardComponent {
   onImageError(event: any): void {
     // Use the service's purple placeholder when image fails to load
     event.target.src = this.unsplashService.getPurplePlaceholder(this.parkingLot.id);
+  }
+
+  getParkingColor(): string {
+    // Generate a color based on parking lot ID
+    const colors = ['#6200ea', '#3f51b5', '#2196f3', '#009688', '#4caf50', '#ff9800', '#f44336', '#9c27b0'];
+    return colors[this.parkingLot.id % colors.length];
+  }
+
+  getParkingInitial(): string {
+    // Get the first letter of the parking lot name
+    return this.parkingLot.name.charAt(0).toUpperCase();
+  }
+
+  getRandomTime(): string {
+    // Generate random time intervals for list view
+    const times = ['30 min', '1 hora', '2 horas', '3 horas', '45 min', '1h 30min'];
+    return times[this.parkingLot.id % times.length];
+  }
+
+  getRandomDuration(): string {
+    // Generate random durations for list view
+    const durations = ['15min', '30min', '45min', '1h', '2h 30min', '1h 15min'];
+    return durations[(this.parkingLot.id + 1) % durations.length];
   }
 }

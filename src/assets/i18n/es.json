@@ -63,6 +63,10 @@
     "EMPTY_STATE": {
       "TITLE": "Aún no tienes estacionamientos favoritos",
       "MESSAGE": "Toca el corazón en cualquier estacionamiento para agregarlo aquí"
+    },
+    "VIEW": {
+      "CARDS": "Vista de tarjetas",
+      "LIST": "Vista de lista"
     }
   },
   "PROFILE": {

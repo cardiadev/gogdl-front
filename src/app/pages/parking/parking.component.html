@@ -34,14 +34,27 @@
         <div class="section">
           <div class="section-header">
             <h2>{{ "PARKING.NEARBY" | translate }}</h2>
-            <span class="section-count">{{ nearbyParkingLots().length }}</span>
+            <div class="header-controls">
+              <span class="section-count">{{ nearbyParkingLots().length }}</span>
+              <button
+                class="view-toggle-btn"
+                (click)="onToggleViewMode()"
+                [title]="currentViewMode() === 'cards' ? ('PARKING.VIEW.LIST' | translate) : ('PARKING.VIEW.CARDS' | translate)">
+                <mat-icon>{{ currentViewMode() === 'cards' ? 'view_list' : 'view_module' }}</mat-icon>
+              </button>
+            </div>
           </div>
 
-          <div class="carousel-container">
-            <div class="carousel">
+          <div class="carousel-container"
+               [class.list-view]="currentViewMode() === 'list'"
+               [attr.data-view-mode]="currentViewMode()">
+            <div class="carousel"
+                 [class.list-layout]="currentViewMode() === 'list'">
               @for (parkingLot of nearbyParkingLots(); track parkingLot.id) {
                 <app-parking-card
                   [parkingLot]="parkingLot"
+                  [viewMode]="currentViewMode()"
+                  [attr.data-view]="currentViewMode()"
                   (onDirections)="onDirections($event)"
                   (onShare)="onShare($event)"
                   (onToggleFavorite)="onToggleFavorite($event)">
@@ -56,14 +69,27 @@
           <div class="section">
             <div class="section-header">
               <h2>{{ "PARKING.FAVORITES" | translate }}</h2>
-              <span class="section-count">{{ favoriteParkingLots().length }}</span>
+              <div class="header-controls">
+                <span class="section-count">{{ favoriteParkingLots().length }}</span>
+                <button
+                  class="view-toggle-btn"
+                  (click)="onToggleViewMode()"
+                  [title]="currentViewMode() === 'cards' ? ('PARKING.VIEW.LIST' | translate) : ('PARKING.VIEW.CARDS' | translate)">
+                  <mat-icon>{{ currentViewMode() === 'cards' ? 'view_list' : 'view_module' }}</mat-icon>
+                </button>
+              </div>
             </div>
 
-            <div class="carousel-container">
-              <div class="carousel">
-                @for (parkingLot of favoriteParkingLots(); track parkingLot.id) {
+            <div class="carousel-container"
+                 [class.list-view]="currentViewMode() === 'list'"
+                 [attr.data-view-mode]="currentViewMode()">
+              <div class="carousel"
+                   [class.list-layout]="currentViewMode() === 'list'">
+                @for (favoriteLot of favoriteParkingLots(); track favoriteLot.id) {
                   <app-parking-card
-                    [parkingLot]="parkingLot"
+                    [parkingLot]="favoriteLot"
+                    [viewMode]="currentViewMode()"
+                    [attr.data-view]="currentViewMode()"
                     (onDirections)="onDirections($event)"
                     (onShare)="onShare($event)"
                     (onToggleFavorite)="onToggleFavorite($event)">
