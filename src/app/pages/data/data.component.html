@@ -1,0 +1,71 @@
+<div class="data-layout">
+  <div class="content-area">
+    <div class="data-container">
+      <h1>{{ "DATA.TITLE" | translate }}</h1>
+
+      <!-- Parking Statistics -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <mat-icon>local_parking</mat-icon>
+          <h3>{{ "DATA.TOTAL_PARKINGS" | translate }}</h3>
+          <p class="stat-number">247</p>
+        </div>
+
+        <div class="stat-card">
+          <mat-icon>access_time</mat-icon>
+          <h3>{{ "DATA.AVG_TIME" | translate }}</h3>
+          <p class="stat-number">45 min</p>
+        </div>
+
+        <div class="stat-card">
+          <mat-icon>trending_up</mat-icon>
+          <h3>{{ "DATA.USAGE_TODAY" | translate }}</h3>
+          <p class="stat-number">78%</p>
+        </div>
+
+        <div class="stat-card">
+          <mat-icon>location_on</mat-icon>
+          <h3>{{ "DATA.FAVORITE_ZONE" | translate }}</h3>
+          <p class="stat-text">Centro Histórico</p>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="recent-activity">
+        <h2>{{ "DATA.RECENT_ACTIVITY" | translate }}</h2>
+        <div class="activity-list">
+          <div class="activity-item">
+            <mat-icon>local_parking</mat-icon>
+            <div class="activity-details">
+              <p class="activity-title">Plaza Tapatía</p>
+              <p class="activity-time">Hace 2 horas • 1h 30min</p>
+            </div>
+            <span class="activity-cost">$25</span>
+          </div>
+
+          <div class="activity-item">
+            <mat-icon>local_parking</mat-icon>
+            <div class="activity-details">
+              <p class="activity-title">Mercado San Juan</p>
+              <p class="activity-time">Ayer • 45min</p>
+            </div>
+            <span class="activity-cost">$18</span>
+          </div>
+
+          <div class="activity-item">
+            <mat-icon>local_parking</mat-icon>
+            <div class="activity-details">
+              <p class="activity-title">Centro Magno</p>
+              <p class="activity-time">Hace 3 días • 2h 15min</p>
+            </div>
+            <span class="activity-cost">$40</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-area">
+    <app-bottom-nav></app-bottom-nav>
+  </div>
+</div>

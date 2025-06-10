@@ -1,0 +1,187 @@
+.parking-layout {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  grid-template-areas:
+    "content"
+    "nav";
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+
+  .content-area {
+    grid-area: content;
+    overflow-y: auto;
+    padding: 20px;
+
+    .parking-container {
+      max-width: 600px;
+      margin: 0 auto;
+
+      .header {
+        margin-bottom: 24px;
+
+        h1 {
+          font-size: 2rem;
+          font-weight: 600;
+          color: #333;
+          margin-bottom: 16px;
+          text-align: center;
+        }
+
+        .filter-chips {
+          display: flex;
+          gap: 8px;
+          justify-content: center;
+
+          .chip {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            background: #f5f5f5;
+            color: #666;
+            border: 1px solid #e0e0e0;
+            transition: all 0.2s ease;
+
+            &:hover {
+              background: #e8f5e8;
+              border-color: #6200ea;
+            }
+
+            &.active {
+              background: #6200ea;
+              color: white;
+              border-color: #6200ea;
+            }
+          }
+        }
+      }
+
+      .parking-list {
+        .parking-item {
+          display: flex;
+          align-items: center;
+          padding: 20px;
+          background: white;
+          border-radius: 12px;
+          margin-bottom: 16px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          border: 1px solid #f0f0f0;
+
+          .parking-info {
+            flex: 1;
+
+            h3 {
+              font-size: 18px;
+              font-weight: 600;
+              color: #333;
+              margin: 0 0 8px 0;
+            }
+
+            .location {
+              display: flex;
+              align-items: center;
+              font-size: 14px;
+              color: #666;
+              margin: 0 0 12px 0;
+
+              mat-icon {
+                font-size: 16px;
+                width: 16px;
+                height: 16px;
+                margin-right: 4px;
+                color: #999;
+              }
+            }
+
+            .parking-details {
+              display: flex;
+              gap: 16px;
+              align-items: center;
+
+              .price {
+                font-size: 16px;
+                font-weight: 700;
+                color: #6200ea;
+              }
+
+              .availability {
+                font-size: 14px;
+                font-weight: 500;
+                padding: 4px 8px;
+                border-radius: 12px;
+
+                &.available {
+                  background: #e8f5e8;
+                  color: #2e7d32;
+                }
+
+                &.limited {
+                  background: #fff3e0;
+                  color: #f57c00;
+                }
+
+                &.unavailable {
+                  background: #ffebee;
+                  color: #d32f2f;
+                }
+              }
+            }
+          }
+
+          .parking-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+
+            .reserve-btn {
+              padding: 8px 16px;
+              border-radius: 20px;
+              border: none;
+              background: #6200ea;
+              color: white;
+              font-size: 14px;
+              font-weight: 600;
+              cursor: pointer;
+              transition: background-color 0.2s ease;
+
+              &:hover:not(:disabled) {
+                background: #5500d1;
+              }
+
+              &:disabled {
+                background: #ccc;
+                cursor: not-allowed;
+              }
+            }
+
+            .favorite-icon {
+              font-size: 20px;
+              width: 20px;
+              height: 20px;
+              color: #ccc;
+              cursor: pointer;
+              transition: color 0.2s ease;
+
+              &:hover {
+                color: #ff4081;
+              }
+            }
+
+            // Favorited icon style
+            .favorite-icon:contains("favorite") {
+              color: #ff4081;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .nav-area {
+    grid-area: nav;
+    z-index: 2;
+  }
+}

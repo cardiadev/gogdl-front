@@ -26,6 +26,22 @@
     "PLACEHOLDER": "Where do you want to go?",
     "CLEAR": "Clear search"
   },
+  "DATA": {
+    "TITLE": "My Data",
+    "TOTAL_PARKINGS": "Total Parkings",
+    "AVG_TIME": "Average Time",
+    "USAGE_TODAY": "Today's Usage",
+    "FAVORITE_ZONE": "Favorite Zone",
+    "RECENT_ACTIVITY": "Recent Activity"
+  },
+  "PARKING": {
+    "TITLE": "Parking Lots",
+    "ALL": "All",
+    "AVAILABLE": "Available",
+    "FAVORITES": "Favorites",
+    "RESERVE": "Reserve",
+    "FULL": "Full"
+  },
   "PROFILE": {
     "TITLE": "Profile",
     "FIRST_NAME": "First Name",
