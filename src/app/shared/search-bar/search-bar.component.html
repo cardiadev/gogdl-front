@@ -1,8 +1,8 @@
 <mat-form-field appearance="outline" class="search-form">
   <mat-icon matPrefix>search</mat-icon>
-  <input matInput placeholder="¿A dónde quieres ir?" [(ngModel)]="searchTerm" />
+  <input matInput [placeholder]="'SEARCH_BAR.PLACEHOLDER' | translate" [(ngModel)]="searchTerm" />
   @if (searchTerm) {
-    <button matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch()">
+    <button matSuffix mat-icon-button [attr.aria-label]="'SEARCH_BAR.CLEAR' | translate" (click)="clearSearch()">
       <mat-icon>close</mat-icon>
     </button>
   }

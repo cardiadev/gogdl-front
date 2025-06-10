@@ -11,6 +11,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideMapboxGL } from 'ngx-mapbox-gl';
+import { MAT_ICON_DEFAULT_OPTIONS } from '@angular/material/icon';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -27,6 +28,12 @@ export const appConfig: ApplicationConfig = {
     }),
     provideAnimations(),
     provideAnimationsAsync(),
+    {
+      provide: MAT_ICON_DEFAULT_OPTIONS,
+      useValue: {
+        fontSet: 'material-symbols-rounded'
+      }
+    },
     importProvidersFrom([
       TranslateModule.forRoot({
         loader: {

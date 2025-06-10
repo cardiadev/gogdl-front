@@ -1,0 +1,71 @@
+<div class="login-container">
+  <!-- Back Button -->
+  <button class="back-button" (click)="goToHome()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <!-- Logo -->
+  <div class="logo-container">
+    <div class="logo">
+      <img src="assets/img/logo_gogdl.svg" alt="Gogdl Logo" class="logo-image">
+    </div>
+  </div>
+
+  <!-- Welcome Message -->
+  <h2 class="welcome-message">{{ "LOGIN.WELCOME_MESSAGE" | translate }}</h2>
+
+  <!-- Login Form -->
+  <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onLogin()">
+    <!-- Email Field -->
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>{{ "LOGIN.EMAIL" | translate }}</mat-label>
+      <input
+        matInput
+        type="email"
+        formControlName="email"
+        (blur)="onFieldBlur('email')">
+      <mat-error *ngIf="getFieldError('email')">
+        {{ (getFieldError('email') ?? '') | translate }}
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Password Field -->
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>{{ "LOGIN.PASSWORD" | translate }}</mat-label>
+      <input
+        matInput
+        [type]="showPassword ? 'text' : 'password'"
+        formControlName="password"
+        (blur)="onFieldBlur('password')">
+      <button
+        mat-icon-button
+        matIconSuffix
+        type="button"
+        (click)="togglePasswordVisibility()"
+        [attr.aria-label]="showPassword ? ('LOGIN.HIDE_PASSWORD' | translate) : ('LOGIN.SHOW_PASSWORD' | translate)">
+        <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+      <mat-error *ngIf="getFieldError('password')">
+        {{ (getFieldError('password') ?? '') | translate }}
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Remember Me & Forgot Password -->
+    <div class="form-options">
+      <mat-checkbox formControlName="rememberMe" class="remember-checkbox">
+        {{ "LOGIN.REMEMBER_ME" | translate }}
+      </mat-checkbox>
+      <button type="button" class="forgot-password-link" (click)="onForgotPassword()">
+        {{ "LOGIN.FORGOT_PASSWORD" | translate }}
+      </button>
+    </div>
+
+    <!-- Login Button -->
+    <button
+      type="submit"
+      class="login-button"
+      [disabled]="!loginForm.valid">
+      {{ "LOGIN.LOGIN_BUTTON" | translate }}
+    </button>
+  </form>
+</div>

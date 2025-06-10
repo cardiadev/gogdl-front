@@ -1,6 +1,46 @@
-@import 'mapbox-gl/dist/mapbox-gl.css';
+/* CSS Normalize */
+@use 'styles/normalize';
+
+/* Third-party imports */
+@use 'mapbox-gl/dist/mapbox-gl.css';
 
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: "Work Sans", "Helvetica Neue", sans-serif; }
+
+/* Material Icons Configuration - Force all icons to use rounded style */
+mat-icon {
+  font-family: 'Material Symbols Rounded' !important;
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+/* Ensure rounded style is applied globally */
+.material-symbols-rounded,
+.material-icons {
+  font-family: 'Material Symbols Rounded' !important;
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+/* General button and input overrides */
+button, input, textarea, select {
+  font-family: "Work Sans", "Helvetica Neue", sans-serif !important;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Work Sans", "Helvetica Neue", sans-serif !important;
+}
+
+/* Paragraphs and spans */
+p, span, div, a {
+  font-family: "Work Sans", "Helvetica Neue", sans-serif !important;
+}

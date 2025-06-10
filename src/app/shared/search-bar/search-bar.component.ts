@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-search-bar',
@@ -14,7 +15,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    TranslateModule
   ],
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.scss'

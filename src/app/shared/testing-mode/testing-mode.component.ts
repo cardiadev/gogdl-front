@@ -1,10 +1,12 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { TranslateModule } from '@ngx-translate/core';
 import { AppStateService } from '../../services/app-state.service';
 
 @Component({
   selector: 'app-testing-mode',
-  imports: [MatIconModule],
+  imports: [MatIconModule, MatSlideToggleModule, TranslateModule],
   templateUrl: './testing-mode.component.html',
   styleUrl: './testing-mode.component.scss'
 })
@@ -20,6 +22,10 @@ export class TestingModeComponent {
   isSplashEnabled = computed(() => this.appStateService.appState().splashEnabled);
 
   // Functions
+  setLanguage(language: 'es' | 'en'): void {
+    this.appStateService.updateAppState('language', language);
+  }
+
   toggleLanguage(): void {
     const newLanguage = this.currentLanguage() === 'en' ? 'es' : 'en';
     this.appStateService.updateAppState('language', newLanguage);

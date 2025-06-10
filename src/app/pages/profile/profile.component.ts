@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BottomNavComponent } from '../../shared/bottom-nav/bottom-nav.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -54,7 +55,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     password: 'mySecurePass123'
   };
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.profileForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2)]],
       lastName: ['', [Validators.required, Validators.minLength(2)]],
@@ -65,6 +66,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    // Verificar si hay datos de perfil, si no, redirigir al login
+    const savedProfile = localStorage.getItem(this.STORAGE_KEY);
+    if (!savedProfile) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
     this.loadUserProfile();
     this.setupFormChangeDetection();
     this.setupStorageListener();
@@ -207,15 +215,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
       userProfile.birthDate = new Date(userProfile.birthDate);
       this.setFormValues(userProfile);
       this.hasData = true;
-    } else {
-      this.setFormValues(this.defaultUserData);
-      this.saveUserProfile();
-      this.hasData = true;
-    }
 
-    // Guardar datos originales para comparación
-    this.originalFormData = { ...this.profileForm.value };
-    this.hasUnsavedChanges = false;
+      // Guardar datos originales para comparación
+      this.originalFormData = { ...this.profileForm.value };
+      this.hasUnsavedChanges = false;
+    } else {
+      // Si no hay datos, redirigir al login
+      this.router.navigate(['/login']);
+    }
   }
 
   // Establecer valores en el formulario
@@ -345,6 +352,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   onLogout(): void {
     this.clearProfile();
     console.log('User logged out - profile data cleared');
+    this.router.navigate(['/login']);
   }
 
   showCurrentData(): void {

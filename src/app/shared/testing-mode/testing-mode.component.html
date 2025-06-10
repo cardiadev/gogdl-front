@@ -1,16 +1,39 @@
 <div class="testing-mode">
   <!-- FLOAT BTN -->
   <button class="floating-btn" (click)="toggleMenu()">
-    <mat-icon>settings</mat-icon>
+    <mat-icon>{{ isMenuOpen() ? 'close' : 'settings' }}</mat-icon>
   </button>
 
   <!-- DROP MENU -->
   @if (isMenuOpen()) {
     <div class="menu">
-      <button (click)="clearLocalStorage()">Clear Storage</button>
-      <button (click)="resetUserData()">Reset Login Data</button>
-      <button (click)="toggleLanguage()">Lang: {{ currentLanguage() }}</button>
-      <button (click)="toggleSplashScreen()">Splash: {{ isSplashEnabled() ? 'ON' : 'OFF' }}</button>
+      <button (click)="clearLocalStorage()">{{ "TESTING_MODE.RESET_APP_STATE" | translate }}</button>
+      <button (click)="resetUserData()">{{ "TESTING_MODE.RESET_LOGIN_DATA" | translate }}</button>
+
+      <!-- Language flags -->
+      <div class="language-selector">
+        <button
+          class="flag-button"
+          [class.active]="currentLanguage() === 'es'"
+          (click)="setLanguage('es')">
+          🇪🇸 ES
+        </button>
+        <button
+          class="flag-button"
+          [class.active]="currentLanguage() === 'en'"
+          (click)="setLanguage('en')">
+          🇺🇸 EN
+        </button>
+      </div>
+
+      <!-- Splash toggle -->
+      <div class="splash-toggle">
+        <span>{{ "TESTING_MODE.SPLASH" | translate }}:</span>
+        <mat-slide-toggle
+          [checked]="isSplashEnabled()"
+          (toggleChange)="toggleSplashScreen()">
+        </mat-slide-toggle>
+      </div>
     </div>
   }
 </div>

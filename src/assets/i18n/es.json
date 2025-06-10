@@ -17,10 +17,14 @@
     "START": "Comenzar"
   },
   "BOTTOM_NAV": {
-    "HOME": "Home",
-    "DATA": "Data",
+    "HOME": "Inicio",
+    "DATA": "Datos",
     "PARKING": "Parking",
-    "PROFILE": "Profile"
+    "PROFILE": "Perfil"
+  },
+  "SEARCH_BAR": {
+    "PLACEHOLDER": "¿A dónde quieres ir?",
+    "CLEAR": "Limpiar búsqueda"
   },
   "PROFILE": {
     "TITLE": "Perfil",
@@ -52,5 +56,24 @@
     },
     "SHOW_PASSWORD": "Mostrar contraseña",
     "HIDE_PASSWORD": "Ocultar contraseña"
+  },
+  "LOGIN": {
+    "WELCOME_MESSAGE": "¡ Vamos a comenzar !",
+    "EMAIL": "Email",
+    "PASSWORD": "Contraseña",
+    "REMEMBER_ME": "Recuérdame",
+    "FORGOT_PASSWORD": "Olvidé la contraseña",
+    "LOGIN_BUTTON": "Iniciar Sesión",
+    "EMAIL_REQUIRED": "El email es requerido",
+    "EMAIL_INVALID": "Por favor ingresa un email válido",
+    "PASSWORD_REQUIRED": "La contraseña es requerida",
+    "PASSWORD_MIN_LENGTH": "La contraseña debe tener al menos 6 caracteres",
+    "SHOW_PASSWORD": "Mostrar contraseña",
+    "HIDE_PASSWORD": "Ocultar contraseña"
+  },
+  "TESTING_MODE": {
+    "RESET_APP_STATE": "Reiniciar App",
+    "RESET_LOGIN_DATA": "Reiniciar Datos",
+    "SPLASH": "Splash"
   }
 }
