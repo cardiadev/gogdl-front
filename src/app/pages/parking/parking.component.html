@@ -1,107 +1,95 @@
 <div class="parking-layout">
   <div class="content-area">
     <div class="parking-container">
-      <div class="header">
-        <h1>{{ "PARKING.TITLE" | translate }}</h1>
+      <h1>{{ "PARKING.TITLE" | translate }}</h1>
+
+      <!-- Filter Chips -->
+      <div class="filter-section">
         <div class="filter-chips">
-          <div class="chip active">{{ "PARKING.ALL" | translate }}</div>
-          <div class="chip">{{ "PARKING.AVAILABLE" | translate }}</div>
-          <div class="chip">{{ "PARKING.FAVORITES" | translate }}</div>
+          @for (filter of filterOptions; track filter.id) {
+            <button
+              class="filter-chip"
+              [class.active]="filter.isActive"
+              (click)="selectFilter(filter.id)">
+              <mat-icon>{{ filter.icon }}</mat-icon>
+              <span>{{ filter.labelKey | translate }}</span>
+            </button>
+          }
         </div>
       </div>
 
-      <!-- Parking List -->
-      <div class="parking-list">
-        <div class="parking-item">
-          <div class="parking-info">
-            <h3>Plaza Tapatía</h3>
-            <p class="location">
-              <mat-icon>location_on</mat-icon>
-              Centro Histórico • 0.2 km
-            </p>
-            <div class="parking-details">
-              <span class="price">$15/hr</span>
-              <span class="availability available">45 espacios</span>
-            </div>
+      <!-- Loading State -->
+      @if (isLoading) {
+        <div class="loading-section">
+          <div class="loading-container">
+            <div class="loading-spinner"></div>
+            <p>{{ "PARKING.LOADING_IMAGES" | translate }}</p>
           </div>
-          <div class="parking-actions">
-            <button class="reserve-btn">{{ "PARKING.RESERVE" | translate }}</button>
-            <mat-icon class="favorite-icon">favorite_border</mat-icon>
+        </div>
+      }
+
+      <!-- Content when loaded -->
+      @if (!isLoading) {
+        <!-- Nearby Section -->
+        <div class="section">
+          <div class="section-header">
+            <h2>{{ "PARKING.NEARBY" | translate }}</h2>
+            <span class="section-count">{{ nearbyParkingLots().length }}</span>
+          </div>
+
+          <div class="carousel-container">
+            <div class="carousel">
+              @for (parkingLot of nearbyParkingLots(); track parkingLot.id) {
+                <app-parking-card
+                  [parkingLot]="parkingLot"
+                  (onDirections)="onDirections($event)"
+                  (onShare)="onShare($event)"
+                  (onToggleFavorite)="onToggleFavorite($event)">
+                </app-parking-card>
+              }
+            </div>
           </div>
         </div>
 
-        <div class="parking-item">
-          <div class="parking-info">
-            <h3>Mercado San Juan</h3>
-            <p class="location">
-              <mat-icon>location_on</mat-icon>
-              Zona Centro • 0.5 km
-            </p>
-            <div class="parking-details">
-              <span class="price">$12/hr</span>
-              <span class="availability limited">8 espacios</span>
+        <!-- Favorites Section -->
+        @if (favoriteParkingLots().length > 0) {
+          <div class="section">
+            <div class="section-header">
+              <h2>{{ "PARKING.FAVORITES" | translate }}</h2>
+              <span class="section-count">{{ favoriteParkingLots().length }}</span>
             </div>
-          </div>
-          <div class="parking-actions">
-            <button class="reserve-btn">{{ "PARKING.RESERVE" | translate }}</button>
-            <mat-icon class="favorite-icon">favorite_border</mat-icon>
-          </div>
-        </div>
 
-        <div class="parking-item">
-          <div class="parking-info">
-            <h3>Centro Magno</h3>
-            <p class="location">
-              <mat-icon>location_on</mat-icon>
-              López Mateos • 1.2 km
-            </p>
-            <div class="parking-details">
-              <span class="price">$20/hr</span>
-              <span class="availability unavailable">Sin espacios</span>
+            <div class="carousel-container">
+              <div class="carousel">
+                @for (parkingLot of favoriteParkingLots(); track parkingLot.id) {
+                  <app-parking-card
+                    [parkingLot]="parkingLot"
+                    (onDirections)="onDirections($event)"
+                    (onShare)="onShare($event)"
+                    (onToggleFavorite)="onToggleFavorite($event)">
+                  </app-parking-card>
+                }
+              </div>
             </div>
           </div>
-          <div class="parking-actions">
-            <button class="reserve-btn" disabled>{{ "PARKING.FULL" | translate }}</button>
-            <mat-icon class="favorite-icon">favorite</mat-icon>
-          </div>
-        </div>
+        }
 
-        <div class="parking-item">
-          <div class="parking-info">
-            <h3>Galerias Guadalajara</h3>
-            <p class="location">
-              <mat-icon>location_on</mat-icon>
-              Zona Minerva • 2.1 km
-            </p>
-            <div class="parking-details">
-              <span class="price">$18/hr</span>
-              <span class="availability available">120 espacios</span>
+        <!-- Empty state for favorites -->
+        @if (favoriteParkingLots().length === 0) {
+          <div class="section">
+            <div class="section-header">
+              <h2>{{ "PARKING.FAVORITES" | translate }}</h2>
+              <span class="section-count">0</span>
             </div>
-          </div>
-          <div class="parking-actions">
-            <button class="reserve-btn">{{ "PARKING.RESERVE" | translate }}</button>
-            <mat-icon class="favorite-icon">favorite_border</mat-icon>
-          </div>
-        </div>
 
-        <div class="parking-item">
-          <div class="parking-info">
-            <h3>Parque Agua Azul</h3>
-            <p class="location">
-              <mat-icon>location_on</mat-icon>
-              Colonia Ferrocarril • 1.8 km
-            </p>
-            <div class="parking-details">
-              <span class="price">$10/hr</span>
-              <span class="availability available">25 espacios</span>
+            <div class="empty-state">
+              <mat-icon>favorite_border</mat-icon>
+              <p>{{ "PARKING.EMPTY_STATE.TITLE" | translate }}</p>
+              <span>{{ "PARKING.EMPTY_STATE.MESSAGE" | translate }}</span>
             </div>
           </div>
-          <div class="parking-actions">
-            <button class="reserve-btn">{{ "PARKING.RESERVE" | translate }}</button>
-            <mat-icon class="favorite-icon">favorite_border</mat-icon>
-          </div>
-        </div>
-      </div>
+        }
+      }
     </div>
   </div>
 

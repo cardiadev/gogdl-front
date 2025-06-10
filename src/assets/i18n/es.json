@@ -42,7 +42,28 @@
     "AVAILABLE": "Disponibles",
     "FAVORITES": "Favoritos",
     "RESERVE": "Reservar",
-    "FULL": "Lleno"
+    "FULL": "Lleno",
+    "DIRECTIONS": "Dirección",
+    "SHARE": "Compartir",
+    "NEARBY": "Cercanos",
+    "LOADING_IMAGES": "Cargando imágenes...",
+    "FILTERS": {
+      "ALL": "Todos",
+      "BEST_RATED": "Mejor Valorados",
+      "OPEN_NOW": "Abiertos Ahora",
+      "AVAILABLE": "Disponibles",
+      "NEARBY": "Más Cercanos"
+    },
+    "AVAILABILITY": {
+      "AVAILABLE": "Disponible",
+      "LIMITED": "Limitado",
+      "FULL": "Lleno",
+      "SPACES": "espacios"
+    },
+    "EMPTY_STATE": {
+      "TITLE": "Aún no tienes estacionamientos favoritos",
+      "MESSAGE": "Toca el corazón en cualquier estacionamiento para agregarlo aquí"
+    }
   },
   "PROFILE": {
     "TITLE": "Perfil",

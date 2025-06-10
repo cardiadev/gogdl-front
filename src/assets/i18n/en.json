@@ -1,14 +1,14 @@
 {
   "WELCOME": "Welcome to GoGDL",
-  "START": "Start",
+  "START": "Get Started",
   "ONBOARDING": {
     "SLIDE_01": {
-      "TITLE": "Explore and find the best spot",
+      "TITLE": "Explore and find the best place",
       "DESCRIPTION": "With just a few taps on your screen, discover the nearest parking lots and their real-time availability."
     },
     "SLIDE_02": {
       "TITLE": "Find parking quickly",
-      "DESCRIPTION": "Explore nearby parking lots in real time, with information on availability so you can choose the best spot."
+      "DESCRIPTION": "Explore the nearest parking lots in real time, with availability information so you can choose the best spot."
     },
     "SLIDE_03": {
       "TITLE": "Forget the stress of parking",
@@ -30,7 +30,7 @@
     "TITLE": "My Data",
     "TOTAL_PARKINGS": "Total Parkings",
     "AVG_TIME": "Average Time",
-    "USAGE_TODAY": "Today's Usage",
+    "USAGE_TODAY": "Usage Today",
     "FAVORITE_ZONE": "Favorite Zone",
     "RECENT_ACTIVITY": "Recent Activity",
     "LOADING_MORE": "Loading more...",
@@ -42,7 +42,28 @@
     "AVAILABLE": "Available",
     "FAVORITES": "Favorites",
     "RESERVE": "Reserve",
-    "FULL": "Full"
+    "FULL": "Full",
+    "DIRECTIONS": "Directions",
+    "SHARE": "Share",
+    "NEARBY": "Nearby",
+    "LOADING_IMAGES": "Loading images...",
+    "FILTERS": {
+      "ALL": "All",
+      "BEST_RATED": "Best Rated",
+      "OPEN_NOW": "Open Now",
+      "AVAILABLE": "Available",
+      "NEARBY": "Nearby"
+    },
+    "AVAILABILITY": {
+      "AVAILABLE": "Available",
+      "LIMITED": "Limited",
+      "FULL": "Full",
+      "SPACES": "spaces"
+    },
+    "EMPTY_STATE": {
+      "TITLE": "You don't have favorite parking lots yet",
+      "MESSAGE": "Tap the heart on any parking lot to add it here"
+    }
   },
   "PROFILE": {
     "TITLE": "Profile",
@@ -58,7 +79,7 @@
       "FIRST_NAME": "Enter your first name",
       "LAST_NAME": "Enter your last name",
       "EMAIL": "Enter your email",
-      "BIRTH_DATE": "DD/MM/YYYY",
+      "BIRTH_DATE": "MM/DD/YYYY",
       "PASSWORD": "Enter your password"
     },
     "ERRORS": {
@@ -80,8 +101,8 @@
     "EMAIL": "Email",
     "PASSWORD": "Password",
     "REMEMBER_ME": "Remember me",
-    "FORGOT_PASSWORD": "Forgot password",
-    "LOGIN_BUTTON": "Login",
+    "FORGOT_PASSWORD": "Forgot password?",
+    "LOGIN_BUTTON": "Sign In",
     "EMAIL_REQUIRED": "Email is required",
     "EMAIL_INVALID": "Please enter a valid email",
     "PASSWORD_REQUIRED": "Password is required",

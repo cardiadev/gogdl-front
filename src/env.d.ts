@@ -5,6 +5,7 @@ declare interface Env {
   // Example: NGX_VERSION: string;
   // [key: string]: any;
   NG_APP_MAPBOX_TOKEN: string;
+  NG_APP_UNSPLASH_ACCESS_KEY: string;
 }
 
 // Choose how to access the environment variables.

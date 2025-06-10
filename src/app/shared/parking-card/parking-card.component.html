@@ -1,0 +1,70 @@
+<div class="parking-card">
+  <!-- Header with favorite icon -->
+  <div class="card-header">
+    <button
+      class="favorite-btn"
+      (click)="onFavoriteToggle()"
+      [class.active]="parkingLot.isFavorite">
+      <mat-icon>{{ parkingLot.isFavorite ? 'favorite' : 'favorite_border' }}</mat-icon>
+    </button>
+  </div>
+
+  <!-- Image -->
+  <div class="image-container">
+    <img
+      [src]="parkingLot.imageUrl"
+      [alt]="parkingLot.name"
+      class="parking-image"
+      (error)="onImageError($event)">
+
+    <!-- Availability badge -->
+    <div class="availability-badge" [class]="getAvailabilityClass()">
+      @if (parkingLot.availability === 'full') {
+        {{ getAvailabilityTextKey() | translate }}
+      } @else {
+        {{ getAvailabilityCount() }} {{ 'PARKING.AVAILABILITY.SPACES' | translate }}
+      }
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="card-content">
+    <!-- Title and rating -->
+    <div class="title-section">
+      <h3 class="parking-name">{{ parkingLot.name }}</h3>
+      <div class="rating-section">
+        <mat-icon class="star-icon">star</mat-icon>
+        <span class="rating">{{ parkingLot.rating }}</span>
+        <span class="review-count">({{ parkingLot.reviewCount }})</span>
+      </div>
+    </div>
+
+    <!-- Distance and price -->
+    <div class="info-section">
+      <div class="distance">
+        <mat-icon>location_on</mat-icon>
+        <span>{{ parkingLot.distance }}</span>
+      </div>
+      <div class="price">
+        ${{ parkingLot.pricePerHour }}/hr
+      </div>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="action-buttons" *ngIf="showActions">
+      <button
+        class="action-btn directions-btn"
+        (click)="onDirectionsClick()">
+        <mat-icon>directions</mat-icon>
+        <span>{{ "PARKING.DIRECTIONS" | translate }}</span>
+      </button>
+
+      <button
+        class="action-btn share-btn"
+        (click)="onShareClick()">
+        <mat-icon>share</mat-icon>
+        <span>{{ "PARKING.SHARE" | translate }}</span>
+      </button>
+    </div>
+  </div>
+</div>
