@@ -21,5 +21,32 @@
     "DATA": "Data",
     "PARKING": "Parking",
     "PROFILE": "Profile"
+  },
+  "PROFILE": {
+    "TITLE": "Perfil",
+    "FIRST_NAME": "Nombre",
+    "LAST_NAME": "Apellido",
+    "EMAIL": "Email",
+    "BIRTH_DATE": "Fecha Nacimiento",
+    "PASSWORD": "Contraseña",
+    "LOGOUT": "Cerrar Sesión",
+    "PLACEHOLDERS": {
+      "FIRST_NAME": "Ingresa tu nombre",
+      "LAST_NAME": "Ingresa tu apellido",
+      "EMAIL": "Ingresa tu email",
+      "BIRTH_DATE": "DD/MM/AAAA",
+      "PASSWORD": "Ingresa tu contraseña"
+    },
+    "ERRORS": {
+      "FIRST_NAME_REQUIRED": "El nombre es requerido",
+      "LAST_NAME_REQUIRED": "El apellido es requerido",
+      "EMAIL_REQUIRED": "El email es requerido",
+      "EMAIL_INVALID": "Por favor ingresa un email válido",
+      "BIRTH_DATE_REQUIRED": "La fecha de nacimiento es requerida",
+      "PASSWORD_REQUIRED": "La contraseña es requerida",
+      "PASSWORD_MIN_LENGTH": "La contraseña debe tener al menos 6 caracteres"
+    },
+    "SHOW_PASSWORD": "Mostrar contraseña",
+    "HIDE_PASSWORD": "Ocultar contraseña"
   }
 }

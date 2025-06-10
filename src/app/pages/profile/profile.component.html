@@ -1,4 +1,101 @@
-<div class="profile-container">
-  <h2>Perfil</h2>
-  <p>Información del usuario...</p>
+<div class="profile-layout">
+  <div class="profile-content">
+    <div class="profile-container">
+      <h1>{{ "PROFILE.TITLE" | translate }}</h1>
+
+      <!-- Profile Image -->
+      <div class="profile-image-container">
+        <div class="profile-image">
+          <div class="profile-placeholder">
+            CJ
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Form -->
+      <form [formGroup]="profileForm" class="profile-form">
+        <!-- First Name -->
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>{{ "PROFILE.FIRST_NAME" | translate }}</mat-label>
+          <input
+            matInput
+            formControlName="firstName"
+            [placeholder]="'PROFILE.PLACEHOLDERS.FIRST_NAME' | translate">
+          <mat-error *ngIf="getFieldError('firstName')">
+            {{ (getFieldError('firstName') ?? '') | translate }}
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Last Name -->
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>{{ "PROFILE.LAST_NAME" | translate }}</mat-label>
+          <input
+            matInput
+            formControlName="lastName"
+            [placeholder]="'PROFILE.PLACEHOLDERS.LAST_NAME' | translate">
+          <mat-error *ngIf="getFieldError('lastName')">
+            {{ (getFieldError('lastName') ?? '') | translate }}
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Email -->
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>{{ "PROFILE.EMAIL" | translate }}</mat-label>
+          <input
+            matInput
+            type="email"
+            formControlName="email"
+            [placeholder]="'PROFILE.PLACEHOLDERS.EMAIL' | translate">
+          <mat-error *ngIf="getFieldError('email')">
+            {{ (getFieldError('email') ?? '') | translate }}
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Birth Date -->
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>{{ "PROFILE.BIRTH_DATE" | translate }}</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="birthDate"
+            readonly>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="getFieldError('birthDate')">
+            {{ (getFieldError('birthDate') ?? '') | translate }}
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Password -->
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>{{ "PROFILE.PASSWORD" | translate }}</mat-label>
+          <input
+            matInput
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            [placeholder]="'PROFILE.PLACEHOLDERS.PASSWORD' | translate">
+          <button
+            mat-icon-button
+            matIconSuffix
+            type="button"
+            (click)="togglePasswordVisibility()"
+            [attr.aria-label]="showPassword ? ('PROFILE.HIDE_PASSWORD' | translate) : ('PROFILE.SHOW_PASSWORD' | translate)"
+            [attr.aria-pressed]="showPassword">
+            <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          <mat-error *ngIf="getFieldError('password')">
+            {{ (getFieldError('password') ?? '') | translate }}
+          </mat-error>
+        </mat-form-field>
+
+        <button type="button" class="logout-button" (click)="onLogout()">
+          {{ "PROFILE.LOGOUT" | translate }}
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="nav-area">
+    <app-bottom-nav></app-bottom-nav>
+  </div>
 </div>
