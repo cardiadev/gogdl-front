@@ -32,7 +32,9 @@
     "AVG_TIME": "Average Time",
     "USAGE_TODAY": "Today's Usage",
     "FAVORITE_ZONE": "Favorite Zone",
-    "RECENT_ACTIVITY": "Recent Activity"
+    "RECENT_ACTIVITY": "Recent Activity",
+    "LOADING_MORE": "Loading more...",
+    "NO_MORE_ITEMS": "No more items to show"
   },
   "PARKING": {
     "TITLE": "Parking Lots",

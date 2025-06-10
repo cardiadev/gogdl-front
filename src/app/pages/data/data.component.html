@@ -1,5 +1,5 @@
 <div class="data-layout">
-  <div class="content-area">
+  <div class="content-area" (scroll)="onScroll($event)">
     <div class="data-container">
       <h1>{{ "DATA.TITLE" | translate }}</h1>
 
@@ -34,32 +34,31 @@
       <div class="recent-activity">
         <h2>{{ "DATA.RECENT_ACTIVITY" | translate }}</h2>
         <div class="activity-list">
-          <div class="activity-item">
-            <mat-icon>local_parking</mat-icon>
-            <div class="activity-details">
-              <p class="activity-title">Plaza Tapatía</p>
-              <p class="activity-time">Hace 2 horas • 1h 30min</p>
+          @for (activity of displayedActivities(); track activity.id) {
+            <div class="activity-item">
+              <mat-icon>{{ activity.icon }}</mat-icon>
+              <div class="activity-details">
+                <p class="activity-title">{{ activity.title }}</p>
+                <p class="activity-time">{{ activity.time }}</p>
+              </div>
+              <span class="activity-cost">${{ activity.cost }}</span>
             </div>
-            <span class="activity-cost">$25</span>
-          </div>
+          }
 
-          <div class="activity-item">
-            <mat-icon>local_parking</mat-icon>
-            <div class="activity-details">
-              <p class="activity-title">Mercado San Juan</p>
-              <p class="activity-time">Ayer • 45min</p>
+          <!-- Loading Spinner -->
+          @if (isLoading()) {
+            <div class="loading-container">
+              <mat-spinner diameter="32"></mat-spinner>
+              <p class="loading-text">{{ "DATA.LOADING_MORE" | translate }}</p>
             </div>
-            <span class="activity-cost">$18</span>
-          </div>
+          }
 
-          <div class="activity-item">
-            <mat-icon>local_parking</mat-icon>
-            <div class="activity-details">
-              <p class="activity-title">Centro Magno</p>
-              <p class="activity-time">Hace 3 días • 2h 15min</p>
+          <!-- End Message -->
+          @if (!hasMoreData() && !isLoading() && displayedActivities().length > 0) {
+            <div class="end-message">
+              <p>{{ "DATA.NO_MORE_ITEMS" | translate }}</p>
             </div>
-            <span class="activity-cost">$40</span>
-          </div>
+          }
         </div>
       </div>
     </div>

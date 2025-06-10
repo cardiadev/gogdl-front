@@ -32,7 +32,9 @@
     "AVG_TIME": "Tiempo Promedio",
     "USAGE_TODAY": "Uso Hoy",
     "FAVORITE_ZONE": "Zona Favorita",
-    "RECENT_ACTIVITY": "Actividad Reciente"
+    "RECENT_ACTIVITY": "Actividad Reciente",
+    "LOADING_MORE": "Cargando más...",
+    "NO_MORE_ITEMS": "No hay más elementos para mostrar"
   },
   "PARKING": {
     "TITLE": "Estacionamientos",
