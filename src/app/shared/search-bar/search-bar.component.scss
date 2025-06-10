@@ -1,0 +1,36 @@
+.search-form {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+
+  // .mat-form-field {
+  //   width: 100%;
+  //   max-width: 600px;
+  //   box-sizing: border-box;
+  //   background-color: white;
+  // }
+
+  // .mat-form-field-appearance-outline .mat-form-field-outline {
+  //   display: none;
+  // }
+
+  // .mat-form-field-appearance-outline .mat-form-field-wrapper {
+  //   // padding: 0 12px;
+  // }
+
+  // input.mat-input-element {
+  //   // padding: 12px 0;
+  //   font-size: 16px;
+  //   border-radius: 999px;
+  // }
+
+  mat-icon {
+    color: #6200ea;
+  }
+
+  button[mat-icon-button] {
+    margin-right: 8px;
+  }
+}

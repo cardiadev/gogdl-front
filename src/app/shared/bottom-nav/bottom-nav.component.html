@@ -1,20 +1,20 @@
 <nav class="bottom-nav">
-  <a routerLink="/" routerLinkActive="active" aria-label="Inicio">
+  <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
     <mat-icon>home</mat-icon>
     <span>{{ "BOTTOM_NAV.HOME" | translate }}</span>
   </a>
 
-  <a routerLink="/data" routerLinkActive="active" aria-label="Datos">
+  <a routerLink="/data" routerLinkActive="active">
     <mat-icon>show_chart</mat-icon>
     <span>{{ "BOTTOM_NAV.DATA" | translate }}</span>
   </a>
 
-  <a routerLink="/parking" routerLinkActive="active" aria-label="Estacionar">
+  <a routerLink="/parking" routerLinkActive="active">
     <mat-icon>assignment</mat-icon>
     <span>{{ "BOTTOM_NAV.PARKING" | translate }}</span>
   </a>
 
-  <a routerLink="/profile" routerLinkActive="active" aria-label="Perfil">
+  <a routerLink="/profile" routerLinkActive="active">
     <mat-icon>person</mat-icon>
     <span>{{ "BOTTOM_NAV.PROFILE" | translate }}</span>
   </a>

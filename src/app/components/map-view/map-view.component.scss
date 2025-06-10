@@ -1,12 +1,19 @@
-.map-container {
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
+// .map-container {
+//   // width: 100%;
+//   // height: 100vh;
+//   // position: absolute;
+//   // top: 0;
+//   // left: 0;
+//   width: 100%;
+//   height: 100%;
+// }
 
 .map-container {
+  height: 100%;
+  width: 100%;
+}
+
+mgl-map {
   height: 100%;
   width: 100%;
 }
@@ -20,8 +27,5 @@
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
 }
 
-mgl-map {
-  height: 100%;
-  width: 100%;
-}
+
 

@@ -3,7 +3,7 @@
   [center]="center()"
   class="map-container"
 >
-  <mgl-control mglNavigation position="top-left"></mgl-control>
+  <mgl-control mglNavigation position="bottom-right"></mgl-control>
 
   @if (showMarker()) {
     <mgl-marker [lngLat]="center()" [offset]="[0, -20]">
