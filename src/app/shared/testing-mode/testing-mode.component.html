@@ -8,6 +8,7 @@
   @if (isMenuOpen()) {
     <div class="menu">
       <button (click)="clearLocalStorage()">Clear Storage</button>
+      <button (click)="resetUserData()">Reset Login Data</button>
       <button (click)="toggleLanguage()">Lang: {{ currentLanguage() }}</button>
       <button (click)="toggleSplashScreen()">Splash: {{ isSplashEnabled() ? 'ON' : 'OFF' }}</button>
     </div>

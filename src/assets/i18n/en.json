@@ -30,6 +30,8 @@
     "BIRTH_DATE": "Birth Date",
     "PASSWORD": "Password",
     "LOGOUT": "Logout",
+    "SAVE_CHANGES": "Save Changes",
+    "DISCARD_CHANGES": "Discard Changes",
     "PLACEHOLDERS": {
       "FIRST_NAME": "Enter your first name",
       "LAST_NAME": "Enter your last name",
@@ -44,7 +46,9 @@
       "EMAIL_INVALID": "Please enter a valid email",
       "BIRTH_DATE_REQUIRED": "Birth date is required",
       "PASSWORD_REQUIRED": "Password is required",
-      "PASSWORD_MIN_LENGTH": "Password must be at least 6 characters"
+      "PASSWORD_MIN_LENGTH": "Password must be at least 6 characters",
+      "FIELD_REQUIRED": "This field is required",
+      "MIN_LENGTH": "This field is too short"
     },
     "SHOW_PASSWORD": "Show password",
     "HIDE_PASSWORD": "Hide password"

@@ -30,6 +30,8 @@
     "BIRTH_DATE": "Fecha Nacimiento",
     "PASSWORD": "Contraseña",
     "LOGOUT": "Cerrar Sesión",
+    "SAVE_CHANGES": "Guardar Cambios",
+    "DISCARD_CHANGES": "Descartar Cambios",
     "PLACEHOLDERS": {
       "FIRST_NAME": "Ingresa tu nombre",
       "LAST_NAME": "Ingresa tu apellido",
@@ -44,7 +46,9 @@
       "EMAIL_INVALID": "Por favor ingresa un email válido",
       "BIRTH_DATE_REQUIRED": "La fecha de nacimiento es requerida",
       "PASSWORD_REQUIRED": "La contraseña es requerida",
-      "PASSWORD_MIN_LENGTH": "La contraseña debe tener al menos 6 caracteres"
+      "PASSWORD_MIN_LENGTH": "La contraseña debe tener al menos 6 caracteres",
+      "FIELD_REQUIRED": "Este campo es requerido",
+      "MIN_LENGTH": "Este campo es muy corto"
     },
     "SHOW_PASSWORD": "Mostrar contraseña",
     "HIDE_PASSWORD": "Ocultar contraseña"

@@ -30,6 +30,20 @@ export class TestingModeComponent {
     location.reload();
   }
 
+  resetUserData(): void {
+    // Restaurar datos dummy iniciales
+    const defaultUserData = {
+      firstName: 'Carlos Javier',
+      lastName: 'Díaz Flores',
+      email: 'carlos.diaz@gmail.com',
+      birthDate: new Date(1989, 4, 23), // May 23, 1989
+      password: 'mySecurePass123'
+    };
+
+    localStorage.setItem('userProfile', JSON.stringify(defaultUserData));
+    console.log('User profile reset to default data:', defaultUserData);
+  }
+
   toggleMenu(): void {
     this.isMenuOpen.update(value => !value);
   }
