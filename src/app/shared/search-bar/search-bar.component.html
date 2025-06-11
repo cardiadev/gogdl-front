@@ -1,9 +1,44 @@
-<mat-form-field appearance="outline" class="search-form">
-  <mat-icon matPrefix>search</mat-icon>
-  <input matInput [placeholder]="'SEARCH_BAR.PLACEHOLDER' | translate" [(ngModel)]="searchTerm" />
-  @if (searchTerm) {
-    <button matSuffix mat-icon-button [attr.aria-label]="'SEARCH_BAR.CLEAR' | translate" (click)="clearSearch()">
-      <mat-icon>close</mat-icon>
-    </button>
+<div class="search-container">
+  <!-- Lista de resultados -->
+  @if (showResults() && (searchResults().length > 0 || isSearching())) {
+    <div class="search-results">
+      @if (isSearching()) {
+        <div class="search-loading">
+          <mat-icon>search</mat-icon>
+          <span>Buscando...</span>
+        </div>
+      } @else {
+        @for (result of searchResults(); track result.id) {
+          <div class="search-result-item" (click)="selectResult(result)">
+            <div class="result-icon">
+              <mat-icon>place</mat-icon>
+            </div>
+            <div class="result-content">
+              <div class="result-name">{{ result.name }}</div>
+              <div class="result-address">{{ result.place_formatted || result.full_address }}</div>
+            </div>
+          </div>
+        }
+      }
+    </div>
   }
-</mat-form-field>
+
+    <!-- Campo de búsqueda -->
+  <mat-form-field appearance="outline" class="search-form">
+    <mat-icon matPrefix>search</mat-icon>
+        <input
+      matInput
+      [placeholder]="'SEARCH_BAR.PLACEHOLDER' | translate"
+      [attr.aria-label]="'SEARCH_BAR.PLACEHOLDER' | translate"
+      [attr.title]="'SEARCH_BAR.PLACEHOLDER' | translate"
+      [(ngModel)]="searchTerm"
+      (input)="onSearchInput()"
+      (focus)="showResults.set(searchResults().length > 0)"
+      (blur)="hideResults()" />
+    @if (searchTerm) {
+      <button matSuffix mat-icon-button [attr.aria-label]="'SEARCH_BAR.CLEAR' | translate" (click)="clearSearch()">
+        <mat-icon>close</mat-icon>
+      </button>
+    }
+  </mat-form-field>
+</div>
