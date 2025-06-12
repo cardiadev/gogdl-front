@@ -5,8 +5,10 @@ import { catchError, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/
 import { environment } from '../../environments/environment';
 
 export interface MapboxSearchResult {
-  id: string;
+  mapbox_id: string;
   name: string;
+  feature_type: string;
+  address?: string;
   full_address: string;
   place_formatted: string;
   coordinates: {
@@ -14,10 +16,22 @@ export interface MapboxSearchResult {
     latitude: number;
   };
   context?: {
-    country?: { name: string };
+    country?: { name: string; country_code: string; };
     region?: { name: string };
     place?: { name: string };
+    address?: {
+      name: string;
+      address_number?: string;
+      street_name?: string;
+    };
+    street?: { name: string };
+    postcode?: { name: string };
   };
+  language?: string;
+  maki?: string;
+  poi_category?: string[];
+  poi_category_ids?: string[];
+  distance?: number;
 }
 
 export interface MapboxSearchResponse {
@@ -58,6 +72,50 @@ export class MapboxSearchService {
         return of({ suggestions: [] });
       }),
       switchMap((response: MapboxSearchResponse) => of(response.suggestions || []))
+    );
+  }
+
+  // Método para obtener detalles completos de un lugar seleccionado
+  retrievePlace(mapboxId: string): Observable<MapboxSearchResult | null> {
+    if (!mapboxId || !this.accessToken) {
+      return of(null);
+    }
+
+    const params = {
+      access_token: this.accessToken,
+      session_token: this.generateSessionToken()
+    };
+
+    return this.http.get<any>(`${this.baseUrl}/retrieve/${mapboxId}`, { params }).pipe(
+      catchError((error) => {
+        console.error('Mapbox Retrieve API error:', error);
+        return of(null);
+      }),
+      switchMap((response) => {
+        if (response && response.features && response.features.length > 0) {
+          const feature = response.features[0];
+          const result: MapboxSearchResult = {
+            mapbox_id: feature.properties.mapbox_id,
+            name: feature.properties.name,
+            feature_type: feature.properties.feature_type,
+            address: feature.properties.address,
+            full_address: feature.properties.full_address,
+            place_formatted: feature.properties.place_formatted,
+            coordinates: {
+              longitude: feature.geometry.coordinates[0],
+              latitude: feature.geometry.coordinates[1]
+            },
+            context: feature.properties.context,
+            language: feature.properties.language,
+            maki: feature.properties.maki,
+            poi_category: feature.properties.poi_category,
+            poi_category_ids: feature.properties.poi_category_ids,
+            distance: feature.properties.distance
+          };
+          return of(result);
+        }
+        return of(null);
+      })
     );
   }
 

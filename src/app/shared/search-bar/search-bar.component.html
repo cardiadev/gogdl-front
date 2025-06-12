@@ -8,7 +8,7 @@
           <span>Buscando...</span>
         </div>
       } @else {
-        @for (result of searchResults(); track result.id) {
+        @for (result of searchResults(); track result.mapbox_id) {
           <div class="search-result-item" (click)="selectResult(result)">
             <div class="result-icon">
               <mat-icon>place</mat-icon>

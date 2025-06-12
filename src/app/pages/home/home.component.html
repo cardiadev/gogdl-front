@@ -4,7 +4,9 @@
   </div>
 
   <div class="search-area">
-    <app-search-bar></app-search-bar>
+    <app-search-bar
+      (destinationSelected)="onDestinationSelected($event)">
+    </app-search-bar>
   </div>
 
   <div class="nav-area">

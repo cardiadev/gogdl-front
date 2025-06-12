@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
 import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
 import { MapboxSearchService, MapboxSearchResult } from '../../services/mapbox-search.service';
+import { LocationService, UserLocation } from '../../services/location.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -24,23 +25,48 @@ import { MapboxSearchService, MapboxSearchResult } from '../../services/mapbox-s
   styleUrl: './search-bar.component.scss'
 })
 export class SearchBarComponent implements OnInit, OnDestroy {
+  @Output() destinationSelected = new EventEmitter<MapboxSearchResult>();
+
   searchTerm = '';
   searchResults = signal<MapboxSearchResult[]>([]);
   isSearching = signal(false);
   showResults = signal(false);
+  userLocation = signal<UserLocation | null>(null);
 
   private searchSubject = new Subject<string>();
   private destroy$ = new Subject<void>();
 
-  constructor(private mapboxSearchService: MapboxSearchService) {}
+  constructor(
+    private mapboxSearchService: MapboxSearchService,
+    private locationService: LocationService
+  ) {}
 
   ngOnInit() {
+    // Configurar búsqueda con debounce
     this.searchSubject.pipe(
       debounceTime(300),
       distinctUntilChanged(),
       takeUntil(this.destroy$)
     ).subscribe(query => {
       this.performSearch(query);
+    });
+
+    // Obtener ubicación del usuario
+    this.locationService.getCurrentLocation().subscribe({
+      next: (location) => {
+        this.userLocation.set(location);
+        console.log('Ubicación del usuario:', location);
+      },
+      error: (error) => {
+        console.error('Error obteniendo ubicación:', error);
+      }
+    });
+
+    // Suscribirse a cambios de ubicación
+    this.locationService.userLocation$.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(location => {
+      this.userLocation.set(location);
     });
   }
 
@@ -60,7 +86,12 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   }
 
   private performSearch(query: string) {
-    this.mapboxSearchService.searchPlaces(query).subscribe({
+    // Usar proximidad si tenemos la ubicación del usuario
+    const proximity = this.userLocation()
+      ? [this.userLocation()!.longitude, this.userLocation()!.latitude] as [number, number]
+      : undefined;
+
+    this.mapboxSearchService.searchPlaces(query, proximity).subscribe({
       next: (results) => {
         this.searchResults.set(results);
         this.isSearching.set(false);
@@ -76,7 +107,10 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   selectResult(result: MapboxSearchResult) {
     this.searchTerm = result.name;
     this.showResults.set(false);
-    // Aquí puedes emitir un evento o llamar a un servicio para manejar la selección
+
+    // Solo emitir evento de destino seleccionado para mostrar el pin
+    this.destinationSelected.emit(result);
+
     console.log('Lugar seleccionado:', result);
   }
 
@@ -92,5 +126,17 @@ export class SearchBarComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.showResults.set(false);
     }, 150);
+  }
+
+  requestUserLocation() {
+    this.locationService.getCurrentLocation().subscribe({
+      next: (location) => {
+        console.log('Ubicación actualizada:', location);
+      },
+      error: (error) => {
+        console.error('Error obteniendo ubicación:', error);
+        // Aquí podrías mostrar un mensaje al usuario
+      }
+    });
   }
 }
