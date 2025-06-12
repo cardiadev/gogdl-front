@@ -3,6 +3,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { TranslateModule } from '@ngx-translate/core';
 import { AppStateService } from '../../services/app-state.service';
+import { LocationService, MockCoordinates } from '../../services/location.service';
 
 @Component({
   selector: 'app-testing-mode',
@@ -13,9 +14,24 @@ import { AppStateService } from '../../services/app-state.service';
 export class TestingModeComponent {
   // Injected services
   private appStateService = inject(AppStateService);
+  private locationService = inject(LocationService);
 
   // Variables
   isMenuOpen = signal(false);
+
+  // Test locations from mapbox API response example
+  private testLocations = {
+    origin: {
+      lat: 20.674289,
+      lng: -103.386854,
+      name: 'Ubicación de Origen (Calle Ingeniero Gabriel Castaños)'
+    },
+    destination: {
+      lat: 20.689791,
+      lng: -103.417812,
+      name: 'Ubicación de Destino (Avenida de la Patria)'
+    }
+  };
 
   // Computed properties
   currentLanguage = computed(() => this.appStateService.appState().language);
@@ -57,5 +73,42 @@ export class TestingModeComponent {
   toggleSplashScreen(): void {
     const newSplashState = !this.isSplashEnabled();
     this.appStateService.updateAppState('splashEnabled', newSplashState);
+  }
+
+  setTestLocationAsOrigin(): void {
+    const testLocation: MockCoordinates = {
+      latitude: this.testLocations.origin.lat,
+      longitude: this.testLocations.origin.lng,
+      accuracy: 10,
+      altitude: null,
+      altitudeAccuracy: null,
+      heading: null,
+      speed: null
+    };
+
+    // Simular que es la ubicación actual del usuario
+    this.locationService.setMockLocation(testLocation);
+    console.log('Test location set as current position:', this.testLocations.origin.name);
+  }
+
+  setTestLocationAsDestination(): void {
+    const testLocation: MockCoordinates = {
+      latitude: this.testLocations.destination.lat,
+      longitude: this.testLocations.destination.lng,
+      accuracy: 10,
+      altitude: null,
+      altitudeAccuracy: null,
+      heading: null,
+      speed: null
+    };
+
+    // Simular que es la ubicación actual del usuario
+    this.locationService.setMockLocation(testLocation);
+    console.log('Test location set as current position:', this.testLocations.destination.name);
+  }
+
+  resetToRealLocation(): void {
+    this.locationService.clearMockLocation();
+    console.log('Cleared mock location, using real GPS location');
   }
 }

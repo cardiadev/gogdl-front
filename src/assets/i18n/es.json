@@ -117,6 +117,14 @@
   "TESTING_MODE": {
     "RESET_APP_STATE": "Reiniciar App",
     "RESET_LOGIN_DATA": "Reiniciar Datos",
-    "SPLASH": "Splash"
+    "SPLASH": "Splash",
+    "TEST_LOCATIONS": {
+      "TITLE": "Ubicaciones de Prueba",
+      "USE_ORIGIN": "Usar Ubicación Origen",
+      "USE_DESTINATION": "Usar Ubicación Destino",
+      "USE_REAL_GPS": "Usar GPS Real",
+      "ORIGIN_NAME": "Calle Ingeniero Gabriel Castaños",
+      "DESTINATION_NAME": "Avenida de la Patria"
+    }
   }
 }

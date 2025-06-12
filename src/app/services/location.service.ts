@@ -10,6 +10,16 @@ export interface UserLocation {
   accuracy?: number;
 }
 
+export interface MockCoordinates {
+  latitude: number;
+  longitude: number;
+  accuracy: number;
+  altitude: number | null;
+  altitudeAccuracy: number | null;
+  heading: number | null;
+  speed: number | null;
+}
+
 export interface DirectionsResponse {
   routes: Route[];
   waypoints: Waypoint[];
@@ -74,10 +84,26 @@ export class LocationService {
   private userLocationSubject = new BehaviorSubject<UserLocation | null>(null);
   public userLocation$ = this.userLocationSubject.asObservable();
 
+  // Mock location for testing
+  private mockLocation: MockCoordinates | null = null;
+
   constructor(private http: HttpClient) {}
 
   getCurrentLocation(): Observable<UserLocation> {
     return new Observable(observer => {
+      // If mock location is set, use it instead of real GPS
+      if (this.mockLocation) {
+        const location: UserLocation = {
+          latitude: this.mockLocation.latitude,
+          longitude: this.mockLocation.longitude,
+          accuracy: this.mockLocation.accuracy
+        };
+        this.userLocationSubject.next(location);
+        observer.next(location);
+        observer.complete();
+        return;
+      }
+
       if (!navigator.geolocation) {
         observer.error('Geolocalización no soportada');
         return;
@@ -108,6 +134,30 @@ export class LocationService {
 
   watchPosition(): Observable<UserLocation> {
     return new Observable(observer => {
+      // If mock location is set, emit it periodically
+      if (this.mockLocation) {
+        const location: UserLocation = {
+          latitude: this.mockLocation.latitude,
+          longitude: this.mockLocation.longitude,
+          accuracy: this.mockLocation.accuracy
+        };
+        this.userLocationSubject.next(location);
+        observer.next(location);
+
+        // Emit the same location every 5 seconds for consistency
+        const interval = setInterval(() => {
+          if (this.mockLocation) {
+            observer.next(location);
+          } else {
+            clearInterval(interval);
+          }
+        }, 5000);
+
+        return () => {
+          clearInterval(interval);
+        };
+      }
+
       if (!navigator.geolocation) {
         observer.error('Geolocalización no soportada');
         return;
@@ -187,5 +237,26 @@ export class LocationService {
 
   getUserLocation(): UserLocation | null {
     return this.userLocationSubject.value;
+  }
+
+  // Mock location methods for testing
+  setMockLocation(coords: MockCoordinates): void {
+    this.mockLocation = coords;
+    const location: UserLocation = {
+      latitude: coords.latitude,
+      longitude: coords.longitude,
+      accuracy: coords.accuracy
+    };
+    this.userLocationSubject.next(location);
+  }
+
+  clearMockLocation(): void {
+    this.mockLocation = null;
+    // Trigger a new location request to get real GPS location
+    this.getCurrentLocation().subscribe();
+  }
+
+  isMockLocationActive(): boolean {
+    return this.mockLocation !== null;
   }
 }

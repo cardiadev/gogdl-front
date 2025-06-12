@@ -10,6 +10,22 @@
       <button (click)="clearLocalStorage()">{{ "TESTING_MODE.RESET_APP_STATE" | translate }}</button>
       <button (click)="resetUserData()">{{ "TESTING_MODE.RESET_LOGIN_DATA" | translate }}</button>
 
+      <!-- Test Locations Section -->
+      <div class="test-locations-section">
+        <h4>{{ "TESTING_MODE.TEST_LOCATIONS.TITLE" | translate }}</h4>
+        <button class="test-location-btn origin" (click)="setTestLocationAsOrigin()">
+          📍 {{ "TESTING_MODE.TEST_LOCATIONS.USE_ORIGIN" | translate }}
+          <small>{{ "TESTING_MODE.TEST_LOCATIONS.ORIGIN_NAME" | translate }}</small>
+        </button>
+        <button class="test-location-btn destination" (click)="setTestLocationAsDestination()">
+          🎯 {{ "TESTING_MODE.TEST_LOCATIONS.USE_DESTINATION" | translate }}
+          <small>{{ "TESTING_MODE.TEST_LOCATIONS.DESTINATION_NAME" | translate }}</small>
+        </button>
+        <button class="test-location-btn reset" (click)="resetToRealLocation()">
+          🌍 {{ "TESTING_MODE.TEST_LOCATIONS.USE_REAL_GPS" | translate }}
+        </button>
+      </div>
+
       <!-- Language flags -->
       <div class="language-selector">
         <button

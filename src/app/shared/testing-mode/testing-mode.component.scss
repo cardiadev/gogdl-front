@@ -112,5 +112,64 @@
       --mdc-switch-unselected-handle-color: #6c757d;
     }
   }
+
+  .test-locations-section {
+    border-top: 1px solid #e9ecef;
+    padding-top: 8px;
+    margin-top: 8px;
+
+    h4 {
+      margin: 0 0 8px 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      text-align: center;
+    }
+
+    .test-location-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 8px;
+      margin-bottom: 4px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+
+      small {
+        font-size: 10px;
+        font-weight: 400;
+        margin-top: 2px;
+        opacity: 0.8;
+        text-align: center;
+        line-height: 1.2;
+      }
+
+      &.origin {
+        background-color: #28a745;
+
+        &:hover {
+          background-color: #218838;
+        }
+      }
+
+      &.destination {
+        background-color: #dc3545;
+
+        &:hover {
+          background-color: #c82333;
+        }
+      }
+
+      &.reset {
+        background-color: #6c757d;
+
+        &:hover {
+          background-color: #5a6268;
+        }
+      }
+    }
+  }
 }
 
