@@ -123,6 +123,8 @@
       "USE_ORIGIN": "Usar Ubicación Origen",
       "USE_DESTINATION": "Usar Ubicación Destino",
       "USE_REAL_GPS": "Usar GPS Real",
+      "GENERATE_TEST_ROUTE": "Generar Ruta de Prueba",
+      "CLEAR_TEST_ROUTE": "Limpiar Ruta de Prueba",
       "ORIGIN_NAME": "Calle Ingeniero Gabriel Castaños",
       "DESTINATION_NAME": "Avenida de la Patria"
     }

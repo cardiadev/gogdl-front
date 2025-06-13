@@ -28,7 +28,10 @@ export interface DirectionsResponse {
 }
 
 export interface Route {
-  geometry: string;
+  geometry: {
+    coordinates: [number, number][];
+    type: string;
+  };
   legs: Leg[];
   weight_name: string;
   weight: number;
@@ -86,6 +89,10 @@ export class LocationService {
 
   // Mock location for testing
   private mockLocation: MockCoordinates | null = null;
+
+  // Test route for testing mode
+  private testRouteSubject = new BehaviorSubject<DirectionsResponse | null>(null);
+  public testRoute$ = this.testRouteSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -258,5 +265,18 @@ export class LocationService {
 
   isMockLocationActive(): boolean {
     return this.mockLocation !== null;
+  }
+
+  // Test route methods for testing mode
+  setTestRoute(route: DirectionsResponse): void {
+    this.testRouteSubject.next(route);
+  }
+
+  clearTestRoute(): void {
+    this.testRouteSubject.next(null);
+  }
+
+  getTestRoute(): DirectionsResponse | null {
+    return this.testRouteSubject.value;
   }
 }

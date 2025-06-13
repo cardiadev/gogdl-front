@@ -1,6 +1,10 @@
 <div class="home-layout">
   <div class="map-area">
-    <app-map-view></app-map-view>
+    <app-map-view
+    [destination]="currentDestination"
+    [route]="currentRoute"
+    [showDestinationPin]="showDestinationPin">
+  </app-map-view>
   </div>
 
   <div class="search-area">

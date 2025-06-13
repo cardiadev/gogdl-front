@@ -24,6 +24,12 @@
         <button class="test-location-btn reset" (click)="resetToRealLocation()">
           🌍 {{ "TESTING_MODE.TEST_LOCATIONS.USE_REAL_GPS" | translate }}
         </button>
+        <button class="test-location-btn route" (click)="generateTestRoute()">
+          🗺️ {{ "TESTING_MODE.TEST_LOCATIONS.GENERATE_TEST_ROUTE" | translate }}
+        </button>
+        <button class="test-location-btn clear" (click)="clearTestRoute()">
+          🧹 {{ "TESTING_MODE.TEST_LOCATIONS.CLEAR_TEST_ROUTE" | translate }}
+        </button>
       </div>
 
       <!-- Language flags -->

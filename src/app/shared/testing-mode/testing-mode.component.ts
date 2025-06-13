@@ -111,4 +111,38 @@ export class TestingModeComponent {
     this.locationService.clearMockLocation();
     console.log('Cleared mock location, using real GPS location');
   }
+
+  generateTestRoute(): void {
+    // Generar una ruta entre las dos ubicaciones del JSON de ejemplo
+    const origin: [number, number] = [this.testLocations.origin.lng, this.testLocations.origin.lat];
+    const destination: [number, number] = [this.testLocations.destination.lng, this.testLocations.destination.lat];
+
+    console.log('Generando ruta de prueba desde:', this.testLocations.origin.name);
+    console.log('Hacia:', this.testLocations.destination.name);
+
+    this.locationService.getDirections(origin, destination, 'driving').subscribe({
+      next: (directionsResponse) => {
+        console.log('Ruta de prueba generada:', directionsResponse);
+
+        if (directionsResponse.routes && directionsResponse.routes.length > 0) {
+          const route = directionsResponse.routes[0];
+          const durationMinutes = Math.round(route.duration / 60);
+          const distanceKm = (route.distance / 1000).toFixed(1);
+
+          console.log(`Ruta: ${distanceKm}km, ${durationMinutes} minutos`);
+
+          // Establecer la ruta de prueba en el servicio para que el mapa la muestre
+          this.locationService.setTestRoute(directionsResponse);
+        }
+      },
+      error: (error) => {
+        console.error('Error generando ruta de prueba:', error);
+      }
+    });
+  }
+
+  clearTestRoute(): void {
+    this.locationService.clearTestRoute();
+    console.log('Ruta de prueba limpiada');
+  }
 }

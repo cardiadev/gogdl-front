@@ -169,6 +169,23 @@
           background-color: #5a6268;
         }
       }
+
+      &.route {
+        background-color: #17a2b8;
+
+        &:hover {
+          background-color: #138496;
+        }
+      }
+
+      &.clear {
+        background-color: #ffc107;
+        color: #212529;
+
+        &:hover {
+          background-color: #e0a800;
+        }
+      }
     }
   }
 }

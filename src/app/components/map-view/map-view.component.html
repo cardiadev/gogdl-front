@@ -1,13 +1,1 @@
-<mgl-map
-  [style]="'mapbox://styles/mapbox/streets-v11'" [zoom]="[13]"
-  [center]="center()"
-  class="map-container"
->
-  <mgl-control mglNavigation position="bottom-right"></mgl-control>
-
-  @if (showMarker()) {
-    <mgl-marker [lngLat]="center()" [offset]="[0, -20]">
-      <div class="user-marker"></div>
-    </mgl-marker>
-  }
-</mgl-map>
+<div #mapContainer class="map-container"></div>
